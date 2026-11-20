@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* Custom Glowing Green Crosshair Cursor for the Page */
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    /* Cool Dark Emerald Cyber-Grid Background */
+    background-color: #0b2418;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(46, 204, 113, 0.25) 0%, transparent 70%),
+      linear-gradient(rgba(46, 204, 113, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 204, 113, 0.08) 1px, transparent 1px);
+    background-size: 100% 100%, 35px 35px, 35px 35px;
+    /* Custom Crosshair SVG */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='9' fill='none' stroke='%232ecc71' stroke-width='2'/%3E%3Ccircle cx='14' cy='14' r='2.5' fill='%23ffffff'/%3E%3Cline x1='14' y1='1' x2='14' y2='6' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='14' y1='22' x2='14' y2='27' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='1' y1='14' x2='6' y2='14' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='22' y1='14' x2='27' y2='14' stroke='%232ecc71' stroke-width='2'/%3E%3C/svg%3E") 14 14, auto;
+  }
+
+  /* Custom Neon Arrow Pointer when hovering over clickable elements */
+  a, button, .game-card, .filter-btn {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 2 L22 14 L13 16 L17 24 L13 26 L9 18 L4 22 Z' fill='%232ecc71' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E") 4 2, pointer;
+  }
+
+  /* Top Banner */
+  .header {
+    background: linear-gradient(90deg, #16a085, #27ae60);
+    padding: 16px 24px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 20px;
+  }
+
+  /* Instruction Box */
+  .info-banner {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(46, 204, 113, 0.35);
+    backdrop-filter: blur(6px);
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #e0f2e9;
+  }
+
+  /* Category Filter Buttons */
+  .filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #b8e0c8;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: #145a32;
+    color: #ffffff;
+    border-color: #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+  }
+
+  /* Search Bar */
+  .search-bar {
+    width: 100%;
+    max-width: 480px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    background: #181c1a;
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 28px;
+    outline: none;
+  }
+
+  .search-bar:focus {
+    border-color: #2ecc71;
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.25);
+  }
+
+  /* Game Grid */
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+  }
+
+  .game-card {
+    background: #145a32;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid rgba(46, 204, 113, 0.25);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .game-card:hover {
+    transform: translateY(-5px);
+    border-color: #2ecc71;
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.35);
+  }
+
+  .game-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: #2b1808;
+  }
+
+  .game-title {
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    background: #117a43;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">Eaglercraft Versions</div>
+
+  <div class="container">
+    <div class="info-banner">
+      Click any version below to launch it in a new tab.
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterGames('all', this)">All Games</button>
+    </div>
+
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search Version..." onkeyup="searchGames()">
+
+    <div class="game-grid" id="gameGrid">
+      <!-- Replace the href values with your actual full URLs to each index.html -->
+      <a href="https://SolverN0MG.github.io/Eaglercraft-1.8-WASM/" onclick="openCloaked(event, this.href)" class="game-card" data-category="simulation">
+        <img src="https://media.discordapp.net/attachments/1551039802500055180/1573468485638557777/Screenshot_2026-09-26_093940.png?ex=6b021e38&is=6b00ccb8&hm=f2df5580cfcede062ab103566a4bda8b7754661a6add23e26c526aa94e4319e7&format=webp&quality=lossless" alt="1.8 WASM">
+        <div class="game-title">Eaglercraft 1.8 WASM</div>
+      </a>
+
+      <a href="https://SolverN0MG.github.io/Eaglercraft-1.8/" onclick="openCloaked(event, this.href)" class="game-card" data-category="rhythm">
+        <img src="https://media.discordapp.net/attachments/1551039802500055180/1573468486318166030/Screenshot_2026-09-26_094258.png?ex=6b021e38&is=6b00ccb8&hm=251258d9afec30904dd6d58e2bcfe833d44ba79e2ebdf4bd712eca929ee3dda8&format=webp&quality=lossless" alt="1.8'">
+        <div class="game-title">Eaglercraft 1.8</div>
+      </a>
+
+      <a href="https://SolverN0MG.github.io/Eaglercraft-1.12-WASM/" onclick="openCloaked(event, this.href)" class="game-card" data-category="sports">
+        <img src="https://media.discordapp.net/attachments/1551039802500055180/1573468487060299998/Screenshot_2026-09-26_094658.png?ex=6b021e38&is=6b00ccb8&hm=22580e8d296be821711f30313ffdb7de9a5e53c07388eca27fefedd1c0ea618b&format=webp&quality=lossless" alt="1.12 WASM">
+        <div class="game-title">Eaglercraft 1.12 WASM</div>
+      </a>
+
+      <a href="https://SolverN0MG.github.io/Eaglercraft-1.12/" onclick="openCloaked(event, this.href)" class="game-card" data-category="sports">
+        <img src="https://media.discordapp.net/attachments/1551039802500055180/1573468487890767963/Screenshot_2026-09-26_104654.png?ex=6b021e39&is=6b00ccb9&hm=0965f95e02eeded76044e74d47598efc9a91222068b840aaff929f767805d687&format=webp&quality=lossless" alt="1.12">
+        <div class="game-title">Eaglercraft 1.12</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Opens the game inside a full-screen about:blank tab
+    function openCloaked(event, url) {
+      event.preventDefault(); // Stops the normal link from opening directly
+
+      const win = window.open('about:blank', '_blank');
+      
+      // Fallback in case a pop-up blocker stops about:blank
+      if (!win) {
+        alert('Pop-up blocked! Please allow pop-ups for this site so games can open in about:blank.');
+        return;
+      }
+
+      const doc = win.document;
+      doc.open();
+      doc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Classes</title>
+          <style>
+            html, body {
+              margin: 0;
+              padding: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: #000;
+            }
+            iframe {
+              border: none;
+              width: 100vw;
+              height: 100vh;
+              display: block;
+            }
+          </style>
+        </head>
+        <body>
+          <iframe src="${url}" allowfullscreen></iframe>
+        </body>
+        </html>
+      `);
+      doc.close();
+    }
+
+    function searchGames() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        const title = card.querySelector('.game-title').textContent.toLowerCase();
+        card.style.display = title.includes(input) ? 'flex' : 'none';
+      });
+    }
+
+    function filterGames(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
