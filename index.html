@@ -139,8 +139,8 @@
     font-weight: 700;
     font-size: 14px;
     background: #117a43;
-  }
-
+  
+  .Cursor
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,9 +148,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dark Teal Cursor</title>
   <style>
-   
-    * {
-      cursor: none !important;
+    /* 1. COPY THIS CSS INTO YOUR <style> TAG */
+    html,
+    body,
+    *,
+    *::before,
+    *::after,
+    *:hover,
+    *:active,
+    *:focus,
+    a,
+    a:hover,
+    button,
+    button:hover,
+    input,
+    input:hover,
+    select,
+    textarea,
+    label,
+    [role="button"],
+    [onclick] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='), none !important;
     }
 
     #cursor-dot,
@@ -161,7 +179,9 @@
       pointer-events: none;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      z-index: 99999;
+      z-index: 999999;
+      opacity: 0;
+      transition: opacity 0.15s ease;
     }
 
     #cursor-dot {
@@ -169,7 +189,7 @@
       height: 6px;
       background-color: #2dd4bf;
       box-shadow: 0 0 10px #2dd4bf, 0 0 20px #0d9488;
-      transition: width 0.2s, height 0.2s, background-color 0.2s;
+      transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.15s ease;
     }
 
     #cursor-ring {
@@ -178,10 +198,10 @@
       border: 1.5px solid rgba(45, 212, 191, 0.55);
       background-color: rgba(15, 118, 110, 0.08);
       box-shadow: 0 0 15px rgba(13, 148, 136, 0.25), inset 0 0 8px rgba(45, 212, 191, 0.15);
-      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, opacity 0.15s ease;
     }
 
-    
+    /* Custom Teal Hover Glow State */
     body.cursor-hover #cursor-dot {
       width: 4px;
       height: 4px;
@@ -196,7 +216,7 @@
       box-shadow: 0 0 24px rgba(45, 212, 191, 0.45);
     }
 
-    
+    /* Click State */
     body.cursor-click #cursor-ring {
       width: 24px;
       height: 24px;
@@ -204,23 +224,24 @@
       background-color: rgba(45, 212, 191, 0.3);
     }
 
-   
+    /* Hide on touch devices */
     @media (hover: none) and (pointer: coarse) {
-      * { cursor: auto !important; }
-      #cursor-dot, #cursor-ring { display: none; }
+      html, body, * { cursor: auto !important; }
+      #cursor-dot, #cursor-ring { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-  
+  <!-- 2. COPY THESE TWO DIVS RIGHT AFTER YOUR <body> TAG -->
   <div id="cursor-ring"></div>
   <div id="cursor-dot"></div>
 
-  
+  <!-- 3. COPY THIS SCRIPT RIGHT BEFORE YOUR CLOSING </body> TAG -->
   <script>
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
+    const blankCursor = "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='), none";
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -232,6 +253,13 @@
       mouseY = e.clientY;
       dot.style.left = `${mouseX}px`;
       dot.style.top = `${mouseY}px`;
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
     });
 
     function animateRing() {
@@ -243,15 +271,16 @@
     }
     animateRing();
 
-    
+    // Suppress default pointer & trigger teal hover ring on ANY hovered element
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('a, button, input, [role="button"], .card, .game-card')) {
+      e.target.style.setProperty('cursor', blankCursor, 'important');
+      if (e.target.closest('a, button, input, select, textarea, [role="button"], [onclick], .card, .game-card')) {
         document.body.classList.add('cursor-hover');
       }
     });
 
     document.addEventListener('mouseout', (e) => {
-      if (e.target.closest('a, button, input, [role="button"], .card, .game-card')) {
+      if (e.target.closest('a, button, input, select, textarea, [role="button"], [onclick], .card, .game-card')) {
         document.body.classList.remove('cursor-hover');
       }
     });
@@ -261,6 +290,7 @@
   </script>
 </body>
 </html>
+
 
 </style>
 </head>
