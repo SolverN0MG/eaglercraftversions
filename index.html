@@ -4,30 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  
+  /* Custom Glowing Green Crosshair Cursor for the Page */
   html, body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
-    
+    /* Cool Dark Emerald Cyber-Grid Background */
     background-color: #0b2418;
     background-image: 
       radial-gradient(circle at 50% 0%, rgba(46, 204, 113, 0.25) 0%, transparent 70%),
       linear-gradient(rgba(46, 204, 113, 0.08) 1px, transparent 1px),
       linear-gradient(90deg, rgba(46, 204, 113, 0.08) 1px, transparent 1px);
     background-size: 100% 100%, 35px 35px, 35px 35px;
-    
+    /* Custom Crosshair SVG */
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='9' fill='none' stroke='%232ecc71' stroke-width='2'/%3E%3Ccircle cx='14' cy='14' r='2.5' fill='%23ffffff'/%3E%3Cline x1='14' y1='1' x2='14' y2='6' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='14' y1='22' x2='14' y2='27' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='1' y1='14' x2='6' y2='14' stroke='%232ecc71' stroke-width='2'/%3E%3Cline x1='22' y1='14' x2='27' y2='14' stroke='%232ecc71' stroke-width='2'/%3E%3C/svg%3E") 14 14, auto;
   }
 
-  
+  /* Custom Neon Arrow Pointer when hovering over clickable elements */
   a, button, .game-card, .filter-btn {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 2 L22 14 L13 16 L17 24 L13 26 L9 18 L4 22 Z' fill='%232ecc71' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E") 4 2, pointer;
   }
 
-  
+  /* Top Banner */
   .header {
     background: linear-gradient(90deg, #16a085, #27ae60);
     padding: 16px 24px;
@@ -43,7 +43,7 @@
     padding: 0 20px;
   }
 
- 
+  /* Instruction Box */
   .info-banner {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(46, 204, 113, 0.35);
@@ -55,7 +55,7 @@
     color: #e0f2e9;
   }
 
-  
+  /* Category Filter Buttons */
   .filters {
     display: flex;
     gap: 12px;
@@ -81,7 +81,7 @@
     box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
   }
 
-  
+  /* Search Bar */
   .search-bar {
     width: 100%;
     max-width: 480px;
@@ -100,7 +100,7 @@
     box-shadow: 0 0 12px rgba(46, 204, 113, 0.25);
   }
 
-  
+  /* Game Grid */
   .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -139,8 +139,8 @@
     font-weight: 700;
     font-size: 14px;
     background: #117a43;
-  
-    Cursor
+  }
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,7 +148,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dark Teal Cursor</title>
   <style>
-    
+    /* 1. COPY THIS CSS INTO YOUR <style> TAG */
     html,
     body,
     *,
@@ -201,7 +201,7 @@
       transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, opacity 0.15s ease;
     }
 
-    
+    /* Custom Teal Hover Glow State */
     body.cursor-hover #cursor-dot {
       width: 4px;
       height: 4px;
@@ -216,7 +216,7 @@
       box-shadow: 0 0 24px rgba(45, 212, 191, 0.45);
     }
 
-    
+    /* Click State */
     body.cursor-click #cursor-ring {
       width: 24px;
       height: 24px;
@@ -224,7 +224,7 @@
       background-color: rgba(45, 212, 191, 0.3);
     }
 
-   
+    /* Hide on touch devices */
     @media (hover: none) and (pointer: coarse) {
       html, body, * { cursor: auto !important; }
       #cursor-dot, #cursor-ring { display: none !important; }
@@ -233,11 +233,11 @@
 </head>
 <body>
 
-  
+  <!-- 2. COPY THESE TWO DIVS RIGHT AFTER YOUR <body> TAG -->
   <div id="cursor-ring"></div>
   <div id="cursor-dot"></div>
 
-  
+  <!-- 3. COPY THIS SCRIPT RIGHT BEFORE YOUR CLOSING </body> TAG -->
   <script>
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
@@ -271,7 +271,7 @@
     }
     animateRing();
 
-    
+    // Suppress default pointer & trigger teal hover ring on ANY hovered element
     document.addEventListener('mouseover', (e) => {
       e.target.style.setProperty('cursor', blankCursor, 'important');
       if (e.target.closest('a, button, input, select, textarea, [role="button"], [onclick], .card, .game-card')) {
@@ -291,6 +291,7 @@
 </body>
 </html>
 
+
 </style>
 </head>
 <body>
@@ -309,7 +310,7 @@
     <input type="text" id="searchInput" class="search-bar" placeholder="Search Version..." onkeyup="searchGames()">
 
     <div class="game-grid" id="gameGrid">
-      
+      <!-- Replace the href values with your actual full URLs to each index.html -->
       <a href="https://SolverN0MG.github.io/Eaglercraft-1.8-WASM/" onclick="openCloaked(event, this.href)" class="game-card" data-category="simulation">
         <img src="https://media.discordapp.net/attachments/1551039802500055180/1573468485638557777/Screenshot_2026-09-26_093940.png?ex=6b021e38&is=6b00ccb8&hm=f2df5580cfcede062ab103566a4bda8b7754661a6add23e26c526aa94e4319e7&format=webp&quality=lossless" alt="1.8 WASM">
         <div class="game-title">Eaglercraft 1.8 WASM</div>
@@ -333,13 +334,13 @@
   </div>
 
   <script>
-    
+    // Opens the game inside a full-screen about:blank tab
     function openCloaked(event, url) {
-      event.preventDefault(); 
+      event.preventDefault(); // Stops the normal link from opening directly
 
       const win = window.open('about:blank', '_blank');
       
-      
+      // Fallback in case a pop-up blocker stops about:blank
       if (!win) {
         alert('Pop-up blocked! Please allow pop-ups for this site so games can open in about:blank.');
         return;
